@@ -16,7 +16,6 @@ const initialState = {
 
 
 export default (state = initialState, action) => {
-    console.log(action)
     const { payload } = action
 
     switch(action.type) {
