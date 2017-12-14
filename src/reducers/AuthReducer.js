@@ -21,9 +21,16 @@ export default (state = initialState, action) => {
         case EMAIL_CHANGED:
             return { ...state, email: payload }
         case PASSWORD_CHANGED:
-            return { ...state, password: payload }
+            return {
+                ...state,
+                password: payload
+            }
             case LOGIN_USER_SUCCESS:
-                return { ...state, user: payload }
+                return {
+                    ...state,
+                    user: payload,
+                    error: ''
+                }
         case LOGIN_USER_FAIL:
             return {
                 ...state,
