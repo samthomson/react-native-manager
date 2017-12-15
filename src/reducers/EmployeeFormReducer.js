@@ -1,6 +1,7 @@
 import {
     EMPLOYEE_CREATE,
-    EMPLOYEE_UPDATE
+    EMPLOYEE_UPDATE,
+    EMPLOYEE_SAVE_SUCCESS
 } from '../actions/types'
 
 const initialState = {
@@ -15,6 +16,10 @@ export default (state = initialState, action) => {
 
     switch(action.type) {
         case EMPLOYEE_CREATE:
+            return {
+                initialState
+            }
+        case EMPLOYEE_SAVE_SUCCESS:
             return {
                 initialState
             }
