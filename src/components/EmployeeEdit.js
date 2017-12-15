@@ -3,7 +3,7 @@ import _ from 'lodash'
 import { connect } from 'react-redux'
 import Communications from 'react-native-communications'
 import { Card, CardSection, Button, Confirm } from './common'
-import { employeeUpdate, employeeSave } from '../actions'
+import { employeeUpdate, employeeSave, employeeDelete } from '../actions'
 import EmployeeForm from './EmployeeForm'
 
 class EmployeeEdit extends Component {
@@ -27,6 +27,17 @@ class EmployeeEdit extends Component {
 
         const message = `Hi ${name}, your upcoming shift is on ${shift}`
         Communications.text(phone, message)
+    }
+
+    onConfirmDeleteEmployee() {
+        const { uid } = this.props.employee
+
+        this.props.employeeDelete({ uid })
+        this.setState({ showModal: false })
+    }
+
+    onCancelDeleteEmployee() {
+        this.setState({ showModal: false })
     }
 
     render() {
@@ -61,6 +72,8 @@ class EmployeeEdit extends Component {
 
                 <Confirm
                     visible={this.state.showModal}
+                    onAccept={this.onConfirmDeleteEmployee.bind(this)}
+                    onDecline={this.onCancelDeleteEmployee.bind(this)}
                 >
                     Are you sure you want to delete this?
                 </Confirm>
@@ -83,6 +96,7 @@ export default connect(
     mapStateToProps,
     {
         employeeUpdate,
-        employeeSave
+        employeeSave,
+        employeeDelete
     }
 )(EmployeeEdit)
